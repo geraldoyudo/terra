@@ -11,7 +11,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Component
 public class CurrentTenantIdentifierResolverImpl implements CurrentTenantIdentifierResolver {
 
-	private static final String DEFAULT_TENANT_ID = "NONE";
+	public static final String DEFAULT_TENANT_ID = "NONE";
 	
 	@Override
 	public String resolveCurrentTenantIdentifier() {

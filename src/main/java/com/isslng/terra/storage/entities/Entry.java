@@ -3,27 +3,31 @@ package com.isslng.terra.storage.entities;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 
 @Entity
 @Data
+@EqualsAndHashCode(of = "entryId")
 public class Entry {
 	@ManyToOne
 	@JoinColumns({    
-	      @JoinColumn(name = "orgId"),
-	      @JoinColumn(name = "type"),
-	      @JoinColumn(name = "serialNo")
+	      @JoinColumn(name = "orgId", referencedColumnName = "orgId", insertable = false, updatable = false),
+	      @JoinColumn(name = "serialNo",  referencedColumnName = "serialNo", insertable = false, updatable = false),
+	      @JoinColumn(name = "type", referencedColumnName = "type", insertable = false, updatable = false)
 	})
 	private EntryHeader entryHeader;;
 	@Id
-	private String entryId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long entryId;
 	private String accountNo;
 	private String narrative;
 	private String currency;
