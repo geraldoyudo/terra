@@ -22,7 +22,7 @@ public class Entry {
 	@JoinColumns({    
 	      @JoinColumn(name = "orgId", referencedColumnName = "orgId", insertable = false, updatable = false),
 	      @JoinColumn(name = "serialNo",  referencedColumnName = "serialNo", insertable = false, updatable = false),
-	      @JoinColumn(name = "type", referencedColumnName = "type", insertable = false, updatable = false)
+	      @JoinColumn(name = "entryType", referencedColumnName = "entryType", insertable = false, updatable = false)
 	})
 	private EntryHeader entryHeader;;
 	@Id

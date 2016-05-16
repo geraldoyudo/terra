@@ -6,13 +6,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(of = {"orgId", "type", "serialNo"})
+@EqualsAndHashCode(of = {"orgId", "entryType", "serialNo"})
 public class EntryId implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	String orgId;
-	String type;
+	String entryType;
 	String serialNo;
 }

@@ -1,5 +1,10 @@
 package com.gerald.multi.tenant;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -24,18 +29,33 @@ public class MultiTenantTestApplicationTests {
 EntryHeaderRepository ehRepo;
 @Autowired
 EntryRepository eRepo;
-	@Test
+	
 	public void contextLoads() {
 		Entry entry = new Entry();
 		EntryHeader eh = new EntryHeader();
 		
 		eh.setOrgId("232");
-		eh.setType("type");
+		eh.setEntryType("type");
 		eh.setSerialNo("serialNo");
 		eh.getEntries().add(entry);
 		ehRepo.save(eh);
 		System.out.println(ehRepo.count());
 		System.out.println(eRepo.count());
+	}
+	@Test
+	public void testSaveEntryMap(){
+		System.out.println(ehRepo.count());
+		System.out.println(eRepo.count());
+		List<Map<String,String>> entries = new ArrayList<>();
+		HashMap<String,String> entry = new HashMap<>();
+		entry.put("orgId", "5432323");
+		entry.put("serialNo", "jkjkkkjjj");
+		entry.put("entryType", "sasddddd");
+		entries.add(entry);
+		ehRepo.save(entries);
+		System.out.println(ehRepo.count());
+		System.out.println(eRepo.count());
+		 
 	}
 
 }
