@@ -1,0 +1,8 @@
+package com.isslng.banking.processor.validation;
+
+rule "Sample"
+	when
+	
+	then
+		
+	end

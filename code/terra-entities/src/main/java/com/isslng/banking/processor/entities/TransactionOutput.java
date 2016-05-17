@@ -1,0 +1,36 @@
+package com.isslng.banking.processor.entities;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class TransactionOutput extends Resource implements TransactionReference {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3335072092623079083L;
+
+	private TransactionInput transactionInput;
+	private TransactionStatus status;
+	private Map<String, Object> outputFields = new HashMap<>();
+	
+	public TransactionInput getTransactionInput() {
+		return transactionInput;
+	}
+	public void setTransactionInput(TransactionInput transactionInput) {
+		this.transactionInput = transactionInput;
+	}
+	public TransactionStatus getStatus() {
+		return status;
+	}
+	public void setStatus(TransactionStatus status) {
+		this.status = status;
+	}
+	public Map<String, Object> getOutputFields() {
+		return outputFields;
+	}
+	public void setOutputFields(Map<String, Object> outputFields) {
+		this.outputFields = outputFields;
+	}
+	
+	
+}

@@ -1,0 +1,13 @@
+package com.isslng.banking.processor.validation;
+
+import com.isslng.banking.processor.utils.EntryBuilder;
+
+rule "Sample"
+	when $entryBuilder: EntryBuilder()
+	
+	then
+		$entryBuilder.putTransactionField(new String[]{"orgId","serialNo", "entryType"})
+			.add()
+			.add()
+			.add();
+	end
