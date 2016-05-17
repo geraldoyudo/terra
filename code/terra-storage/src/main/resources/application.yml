@@ -9,7 +9,7 @@ spring:
 
 terra:
   multi-tenancy:
-    datasource1:
+    ISSL:
       url: jdbc:mysql://localhost:3306/tenant_1
       username: user
       password: password
