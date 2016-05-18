@@ -20,16 +20,16 @@ CREATE TABLE `entry` (
   `transactionAnalysisCode` varchar(255) DEFAULT NULL,
   `orgId` varchar(255) DEFAULT NULL,
   `serialNo` varchar(255) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
+  `entryType` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`entryId`),
-  KEY `FKaex5amuuqbr56j198pd8scqw7` (`orgId`,`serialNo`,`type`),
-  CONSTRAINT `FKaex5amuuqbr56j198pd8scqw7` FOREIGN KEY (`orgId`, `serialNo`, `type`) REFERENCES `entryheader` (`orgId`, `serialNo`, `type`)
+  KEY `orgId_serialNo_entryType` (`orgId`,`serialNo`,`entryType`),
+  CONSTRAINT `orgId_serialNo_entryType` FOREIGN KEY (`orgId`, `serialNo`, `entryType`) REFERENCES `entryheader` (`orgId`, `serialNo`, `entryType`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `entryheader` (
   `orgId` varchar(255) NOT NULL,
   `serialNo` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
+  `entryType` varchar(255) NOT NULL,
   `approvedBy` varchar(255) DEFAULT NULL,
   `approvedFromIP` varchar(255) DEFAULT NULL,
   `documentReference` varchar(255) DEFAULT NULL,
@@ -48,6 +48,6 @@ CREATE TABLE `entryheader` (
   `reviewedBy` varchar(255) DEFAULT NULL,
   `reviewedFromIP` varchar(255) DEFAULT NULL,
   `valueDate` datetime DEFAULT NULL,
-  PRIMARY KEY (`orgId`,`serialNo`,`type`),
-  UNIQUE KEY `UK_9at4dfwoxsie6kj1dimus4ykv` (`entityHeaderId`)
+  PRIMARY KEY (`orgId`,`serialNo`,`entryType`),
+  UNIQUE KEY `unique_entryHeaderId` (`entityHeaderId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
