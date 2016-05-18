@@ -1,11 +1,13 @@
 package com.isslng.banking.processor.utils;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanMap;
+import org.apache.commons.beanutils.converters.DoubleConverter;
 
 import com.isslng.banking.processor.entities.TransactionInput;
 
@@ -13,6 +15,8 @@ public class EntryBuilder {
 	private TransactionInput transactionInput;
 	private Map<String, Object> currentEntry = new HashMap<>();
 	private List<Map<String,Object>> entries = new ArrayList<>();
+	public static final boolean DEBIT = false;
+	public static final boolean CREDIT = true;
 	public EntryBuilder() {
 	
 	}
@@ -75,7 +79,7 @@ public class EntryBuilder {
 		this.transactionInput = transactionInput;
 	}
 	
-	private Object getProperty(String key) {
+	public Object getProperty(String key) {
 		Object property;
 		BeanMap tiMap = new BeanMap(transactionInput);
 		property = tiMap.get(key);
@@ -86,5 +90,40 @@ public class EntryBuilder {
 			property = transactionInput.meta(key);
 		}
 		return property;
+	}
+	
+	public EntryBuilder putAmount(String property, boolean credit){
+		Object amt = getProperty(property);
+		BigDecimal amount;
+		if(amt == null){
+			amount = new BigDecimal(0);
+		}else{
+			amount = new BigDecimal(amt.toString());
+		}
+		return putAmount(amount, credit);
+		
+	}
+	public EntryBuilder putAmount(BigDecimal amount, boolean credit){
+			Object rateObj = getProperty("rate");
+			
+			if(rateObj == null){
+				rateObj = 1;
+			}
+			BigDecimal ccyAmount = amount.multiply(new BigDecimal(rateObj.toString()));
+			if(credit){
+				return this.put("amount", amount)
+						.put("ccyAmount",  ccyAmount)
+						.put("ccyCredit", ccyAmount)
+						.put("credit", amount)
+						.put("ccyDebit", 0)
+						.put("debit", 0);
+			}else{
+				return this.put("amount", amount.negate())
+						.put("ccyAmount",  ccyAmount.negate())
+						.put("ccyDebit", ccyAmount)
+						.put("debit", amount)
+						.put("ccyCredit", 0)
+						.put("credit", 0);
+			}
 	}
 }

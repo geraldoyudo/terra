@@ -31,12 +31,12 @@ public class Entry {
 	private String accountNo;
 	private String narrative;
 	private String currency;
-	private boolean ccyDebit;
-	private boolean ccyCredit;
+	private BigDecimal ccyDebit;
+	private BigDecimal ccyCredit;
 	private BigDecimal ccyAmount;
 	private float rate;
-	private boolean debit;
-	private boolean credit;
+	private BigDecimal debit;
+	private BigDecimal credit;
 	private BigDecimal amount;
 	private String transactionAnalysisCode;
 }

@@ -18,7 +18,7 @@ public class DroolsImporter {
 	private String processingFolder;
 	@PostConstruct
 	public void moveFiles(){
-		String[] destn = new String[]{"/validation", "/processing"};
+		String[] destn = new String[]{"/rules/validation", "/rules/processing"};
 		String[] src = {validationFolder,processingFolder};
 		for(int i=0; i< destn.length; ++i ){
 			if(src[i] != null){
