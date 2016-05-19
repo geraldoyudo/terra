@@ -17,9 +17,9 @@ public class Populator {
 	public void initRepo(){
 		if(accountRepository.findAll().isEmpty()){
 			Account account = new Account();
-			account.setAccountId("PTCSH/00/00/00");
+		
 			account.setAccountNo("PTCSH/00/00/00");
-			account.setAlternateAccount("PTCSH/00/00/00");
+		
 		}
 		
 	}
