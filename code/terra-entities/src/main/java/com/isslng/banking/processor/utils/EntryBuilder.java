@@ -69,6 +69,9 @@ public class EntryBuilder {
 		entries.add(currentEntry);
 		return newEntry();
 	}
+	public EntryBuilder and(){
+		return add();
+	}
 	public List<Map<String,Object>> build(){
 		return entries;
 	}
@@ -125,5 +128,33 @@ public class EntryBuilder {
 						.put("ccyCredit", 0)
 						.put("credit", 0);
 			}
+	}
+	public EntryBuilder debitAccount(String accountNo, BigDecimal amount){
+		return this.put("accountNo", accountNo)
+				.putAmount(amount, false);
+	}
+	public EntryBuilder debitAccount(String accountNo, String amountProperty){
+		return debitAccount(accountNo, new BigDecimal(getProperty(amountProperty).toString()));
+	}
+	public EntryBuilder debitAccountWithField(String property, BigDecimal amount){
+		return this.put("accountNo", getProperty(property).toString())
+				.putAmount(amount, false);
+	}
+	public EntryBuilder debitAccountWithField(String property, String amountProperty){
+		return debitAccountWithField(property, new BigDecimal(getProperty(amountProperty).toString()));
+	}
+	public EntryBuilder creditAccount(String accountNo, BigDecimal amount){
+		return this.put("accountNo", accountNo)
+				.putAmount(amount, true);
+	}
+	public EntryBuilder creditAccount(String accountNo, String  amountProperty){
+		return creditAccount(accountNo,new BigDecimal( getProperty(amountProperty).toString()));
+	}
+	public EntryBuilder creditAccountWithField(String property, BigDecimal amount){
+		return this.put("accountNo", getProperty(property).toString())
+				.putAmount(amount, true);
+	}
+	public EntryBuilder creditAccountWithField(String property, String amountProperty){
+		return creditAccountWithField(property, new BigDecimal( getProperty(amountProperty).toString()));
 	}
 }

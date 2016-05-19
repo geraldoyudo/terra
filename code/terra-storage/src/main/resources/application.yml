@@ -6,7 +6,8 @@ spring:
     password: password
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
-
+    hibernate:
+      naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
 terra:
   multi-tenancy:
     ISSL:

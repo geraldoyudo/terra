@@ -31,13 +31,13 @@ public class EntryHeaderRepositoryImpl implements EntryHeaderRepositoryCustom{
 	
 	private String generateHeaderQuery(Map<String,String> entry){
 		String template = "INSERT INTO ENTRYHEADER "
-				+ "(orgId, serialNo, entryType,"
-				+ "approvedBy,approvedFromIP,documentReference,"
-				+ "documentType,entityCount,"
-				+ "financialRecord, financialYear, postDate,"
-				+ "postedBy, postedFromIP, postingRecord,"
-				+ "postingYear, proofTotal, remarks,"
-				+ "reviewedBy, reviewedFromIP, valueDate) "
+				+ "(OrgId, SerialNo, EntryType,"
+				+ "ApprovedBy,ApprovedFromIP,DocumentReference,"
+				+ "DocumentType,EntryCount,"
+				+ "FinancialRecord, FinancialYear, PostDate,"
+				+ "PostedBy, PostedFromIP, PostingRecord,"
+				+ "PostingYear, ProofTotal, Remarks,"
+				+ "ReviewedBy, ReviewedFromIP, ValueDate) "
 				+ "VALUES "
 				+ "('%s','%s','%s'"
 				+ ",'%s','%s','%s'"
@@ -49,19 +49,19 @@ public class EntryHeaderRepositoryImpl implements EntryHeaderRepositoryCustom{
 		return String.format(template,
 				entry.get("orgId"), entry.get("serialNo"), entry.get("entryType")
 				,entry.get("approvedBy"), entry.get("approvedFromIP"), entry.get("documentReference"),
-				entry.get("documentType"), entry.getOrDefault("entityCount", "0"), entry.get("entityHeaderId"),
+				entry.get("documentType"), entry.getOrDefault("entryCount", "0"), 
 				entry.get("financialRecord"), entry.get("financialYear"), entry.get("postDate"),
 				entry.get("postedBy"), entry.get("postedFromIP"), entry.get("postingRecord"),
 				entry.get("postingYear"), entry.getOrDefault("proofTotal", "0"), entry.get("remarks"),
 				entry.get("reviewedBy"), entry.get("reviewedFromIP"), entry.get("valueDate"));
 	}
 	private String generateEntryQuery(Map<String,String> entry){
-		String template = "INSERT INTO ENTRY "
-				+ "(orgId, serialNo, entryType"
-				+ ",accountNo, amount, ccyAmount,"
-				+ "ccyCredit,ccyDebit,credit,"
-				+ "currency,debit,narrative,"
-				+ "rate, transactionAnalysisCode) "
+		String template = "INSERT INTO ENTRIES "
+				+ "(OrgId, SerialNo, EntryType"
+				+ ",AccountNo, Amount, CcyAmount,"
+				+ "CcyCredit,CcyDebit,Credit,"
+				+ "Currency,Debit,Narrative,"
+				+ "Rate, TransactionAnalysisCode) "
 				+ "VALUES "
 				+ "('%s', '%s', '%s',"
 				+ "'%s', %s, %s"

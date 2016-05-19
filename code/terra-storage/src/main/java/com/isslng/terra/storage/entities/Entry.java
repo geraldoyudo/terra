@@ -2,6 +2,7 @@ package com.isslng.terra.storage.entities;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,29 +15,40 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 
-@Entity
+@Entity(name = "Entries")
 @Data
-@EqualsAndHashCode(of = "entryId")
+@EqualsAndHashCode(of = "id")
 public class Entry {
 	@ManyToOne
 	@JoinColumns({    
-	      @JoinColumn(name = "orgId", referencedColumnName = "orgId", insertable = false, updatable = false),
-	      @JoinColumn(name = "serialNo",  referencedColumnName = "serialNo", insertable = false, updatable = false),
-	      @JoinColumn(name = "entryType", referencedColumnName = "entryType", insertable = false, updatable = false)
+	      @JoinColumn(name = "OrgId", referencedColumnName = "OrgId", insertable = false, updatable = false),
+	      @JoinColumn(name = "SerialNo",  referencedColumnName = "SerialNo", insertable = false, updatable = false),
+	      @JoinColumn(name = "EntryType", referencedColumnName = "EntryType", insertable = false, updatable = false)
 	})
 	private EntryHeader entryHeader;;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long entryId;
+	private long id;
+	@Column(name = "AccountNo")
 	private String accountNo;
+	@Column(name = "Narrative")
 	private String narrative;
+	@Column(name = "Currency")
 	private String currency;
+	@Column(name = "CcyDebit")
 	private BigDecimal ccyDebit;
+	@Column(name = "CcyCredit")
 	private BigDecimal ccyCredit;
+	@Column(name = "CcyAmount")
 	private BigDecimal ccyAmount;
+	@Column(name = "rate")
 	private float rate;
+	@Column(name = "Debit")
 	private BigDecimal debit;
+	@Column(name = "Credit")
 	private BigDecimal credit;
+	@Column(name = "Amount")
 	private BigDecimal amount;
+	@Column(name = "TransactionAnalysisCode")
 	private String transactionAnalysisCode;
 }
