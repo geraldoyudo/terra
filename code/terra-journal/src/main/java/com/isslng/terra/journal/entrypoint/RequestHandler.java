@@ -24,6 +24,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.isslng.banking.processor.entities.TransactionInput;
+import com.isslng.banking.processor.exception.TransactionProcessingException;
+import com.isslng.banking.processor.exception.TransactionValidatorException;
 import com.isslng.banking.processor.utils.EntryBuilder;
 import com.isslng.terra.journal.service.TransactionInputProcessor;
 import com.isslng.terra.journal.service.TransactionInputValidator;
@@ -50,7 +52,7 @@ public class RequestHandler {
 			List<Map<String,Object>> journal = processor.process(builder);
 			ResponseEntity<String> result =  submit(journal, ti.getOrgCode());
 			sendReply(request, result);
-		}catch(HttpServerErrorException ex){
+		}catch(HttpServerErrorException |TransactionValidatorException | TransactionProcessingException ex ){
 			sendReply(ex.getMessage(), "FAILURE",request);
 		}
 	}
