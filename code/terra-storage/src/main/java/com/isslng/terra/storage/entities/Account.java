@@ -33,11 +33,11 @@ public class Account {
 	@Column(name = "Description")
 	private String description;
 	@Column(name = "isActive")
-	private boolean active;
+	private Boolean active;
 	@Column(name = "isSummary")
-	private boolean summary;
+	private Boolean summary;
 	@Column(name = "AccountSign")
-	private char sign;
+	private Character sign = 'a';
 
 	
 }

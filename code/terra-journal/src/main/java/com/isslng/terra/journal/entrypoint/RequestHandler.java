@@ -54,6 +54,8 @@ public class RequestHandler {
 			sendReply(request, result);
 		}catch(HttpServerErrorException |TransactionValidatorException | TransactionProcessingException ex ){
 			sendReply(ex.getMessage(), "FAILURE",request);
+		}catch(Exception ex){
+			sendReply(ex.getMessage(), "FAILURE",request);
 		}
 	}
 	private void sendReply(String message, String status, Message request) throws JmsException, JMSException{
