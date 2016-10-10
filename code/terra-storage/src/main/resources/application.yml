@@ -29,6 +29,6 @@ endpoints:
   jmx:
     domain: terra-storage
 umaas:
-  log:target
+  log: target
 logging:
   file: ${umaas.log}/terra-storage.log
