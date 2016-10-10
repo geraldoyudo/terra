@@ -6,7 +6,7 @@
 	<groupId>com.isslng.terra</groupId>
 	<artifactId>terra-storage</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>TerraStorage</name>
 	<description>Storage system for Terra Transactions</description>
@@ -71,15 +71,23 @@
 			<artifactId>sqljdbc4</artifactId>
 			<version>4.0</version>
  		</dependency>
+ 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	
 	<build>
+		<finalName>${project.artifactId}</finalName>
+		<!-- 
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		-->
 	</build>
 	
 
