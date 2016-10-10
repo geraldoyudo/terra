@@ -25,3 +25,10 @@ terra:
       username: user
       password: password
       driver-class-name: com.mysql.jdbc.Driver
+endpoints:
+  jmx:
+    domain: terra-storage
+umaas:
+  log:target
+logging:
+  file: ${umaas.log}/terra-storage.log
